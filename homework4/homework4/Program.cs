@@ -26,6 +26,15 @@ namespace homework4
             string p = @"(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)";
             return Regex.Replace(s, p, "<em>$1</em>");
         }
+        //возвращает сумму продаж указанной валюты
+        public static double sumofvalue(string s, string t)
+        {
+            string p = $@"(?<=\b{s}=)\d+(\.\d+)?";
+            var ms = Regex.Matches(t, p);
+            double sum = 0;
+            foreach (Match m in ms) sum += double.Parse(m.Value, System.Globalization.CultureInfo.InvariantCulture);
+            return sum;
+        }
         static void Main(string[] args)
         {
             //task1
@@ -41,6 +50,13 @@ namespace homework4
             Console.WriteLine(" ");
             string s3 = "Это *italic text*, а это **bold text (not italic)** ";
             Console.WriteLine(starstoem(s3));
+
+            //task5
+            string s5 = "USD=100 RUB=200.75 USD=70 BYN=800.40 EUR=800 JPY=1000 RUB=20";
+            Console.WriteLine($"USD sum: {sumofvalue("USD", s5)}");
+            Console.WriteLine($"RUB sum: {sumofvalue("RUB", s5)}");
+
+            //task6
         }
     }
 }
