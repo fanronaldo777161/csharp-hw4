@@ -20,6 +20,12 @@ namespace homework4
                 r[i] = ms[i].Value;
             return r;
         }
+        //Преобразовать текст, обрамленный в звездочки, в текст обрамленный тегом <em></em>
+        public static string starstoem(string s)
+        {
+            string p = @"(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)";
+            return Regex.Replace(s, p, "<em>$1</em>");
+        }
         static void Main(string[] args)
         {
             //task1
@@ -31,6 +37,10 @@ namespace homework4
             var s1 = iscarnum(s);
             foreach(var i in s1)
                 Console.Write(i + " ");
+            //task3
+            Console.WriteLine(" ");
+            string s3 = "Это *italic text*, а это **bold text (not italic)** ";
+            Console.WriteLine(starstoem(s3));
         }
     }
 }
