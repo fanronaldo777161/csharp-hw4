@@ -35,6 +35,11 @@ namespace homework4
             foreach (Match m in ms) sum += double.Parse(m.Value, System.Globalization.CultureInfo.InvariantCulture);
             return sum;
         }
+        //разделить слова с помощью пробелов
+        public static string cameltopers(string s)
+        { 
+            return Regex.Replace(s, @"(?<=[a-zа-яё])(?=[A-ZА-ЯЁ])", " ");
+        }
         static void Main(string[] args)
         {
             //task1
@@ -57,6 +62,7 @@ namespace homework4
             Console.WriteLine($"RUB sum: {sumofvalue("RUB", s5)}");
 
             //task6
+            Console.WriteLine(cameltopers("ThisIsSomeText"));
         }
     }
 }
